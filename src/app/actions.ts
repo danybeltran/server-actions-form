@@ -16,7 +16,7 @@ export async function getMessages() {
 export async function sendMessage(data: FormData) {
   const { messageText } = $form<Message>(data)
 
-  const newMessage = {
+  const newMessage: Message = {
     messageText,
     id: crypto.randomUUID()
   }
