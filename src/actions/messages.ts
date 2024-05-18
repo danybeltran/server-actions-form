@@ -7,10 +7,12 @@ type Message = {
   messageText: string
 }
 
-const messages: Message[] = []
+let messages: Message[] = []
 
 export async function getMessages() {
-  return actionData(messages)
+  return {
+    data: messages
+  }
 }
 
 export async function sendMessage(data: FormData) {

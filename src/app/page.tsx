@@ -7,23 +7,11 @@ import {
   useServerMutation
 } from 'atomic-utils'
 
-import { getMessages, sendMessage } from './actions'
+import { getMessages, sendMessage } from '@/actions/messages'
 
 export default function Page() {
-  const { data } = useServerAction(getMessages, {
-    default: [],
-    middleware(incomingData) {
-      return incomingData.reverse()
-    },
-    id: 'Messages'
-  })
-
-  const { formProps } = useServerMutation(sendMessage, {
-    onSubmit: 'reset',
-    onResolve() {
-      revalidate('Messages')
-    }
-  })
+  const { data } = useMessages()
+  const { formProps } = useSendMessage()
 
   return (
     <main className='p-4 space-y-2'>
@@ -48,4 +36,23 @@ export default function Page() {
       />
     </main>
   )
+}
+
+function useMessages() {
+  return useServerAction(getMessages, {
+    id: 'messages',
+    default: [],
+    middleware(incomingData) {
+      return incomingData.reverse()
+    }
+  })
+}
+
+function useSendMessage() {
+  return useServerMutation(sendMessage, {
+    onSubmit: 'reset',
+    onResolve() {
+      revalidate('messages')
+    }
+  })
 }
