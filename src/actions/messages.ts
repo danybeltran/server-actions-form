@@ -10,9 +10,7 @@ type Message = {
 let messages: Message[] = []
 
 export async function getMessages() {
-  return {
-    data: messages
-  }
+  return actionData(messages)
 }
 
 export async function sendMessage(data: FormData) {
