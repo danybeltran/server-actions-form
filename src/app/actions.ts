@@ -10,7 +10,7 @@ type Message = {
 const messages: Message[] = []
 
 export async function getMessages() {
-  return actionData(messages.reverse())
+  return actionData(messages)
 }
 
 export async function sendMessage(data: FormData) {

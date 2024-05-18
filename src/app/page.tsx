@@ -6,11 +6,15 @@ import {
   useServerAction,
   useServerMutation
 } from 'atomic-utils'
+
 import { getMessages, sendMessage } from './actions'
 
 export default function Page() {
   const { data } = useServerAction(getMessages, {
     default: [],
+    middleware(incomingData) {
+      return incomingData.reverse()
+    },
     id: 'Messages'
   })
 
