@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  RenderList,
-  revalidate,
-  useServerAction,
-  useServerMutation
-} from 'atomic-utils'
+import { RenderList, revalidate, useAction, useMutation } from 'atomic-utils'
 
 import { getMessages, sendMessage } from '@/actions/messages'
 
@@ -39,7 +34,7 @@ export default function Page() {
 }
 
 function useMessages() {
-  return useServerAction(getMessages, {
+  return useAction(getMessages, {
     id: 'messages',
     default: [],
     middleware(incomingData) {
@@ -49,7 +44,7 @@ function useMessages() {
 }
 
 function useSendMessage() {
-  return useServerMutation(sendMessage, {
+  return useMutation(sendMessage, {
     onSubmit: 'reset',
     onResolve() {
       revalidate('messages')
