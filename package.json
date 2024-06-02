@@ -10,7 +10,7 @@
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
-    "atomic-utils": "^1.0.9",
+    "atomic-utils": "^1.2.8",
     "next": "^14.2.2",
     "react": "^18",
     "react-dom": "^18"
